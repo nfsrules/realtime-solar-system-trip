@@ -199,7 +199,6 @@ export default function App() {
         name: output.name,
         arguments: output.arguments,
       };
-      console.log("Tool call:", toolCall);
       setToolCall(toolCall);
 
       // TOOL CALL HANDLING
@@ -213,7 +212,6 @@ export default function App() {
         const issPosition = await fetch("/api/iss").then((response) =>
           response.json()
         );
-        console.log("ISS position:", issPosition);
         toolCallOutput.issPosition = issPosition;
       }
 
@@ -246,7 +244,7 @@ export default function App() {
           // Start synchronized planetary tour
           startPlanetaryTour(setToolCall);
 
-          toolCallOutput.response = "Voici notre chanson spéciale Air Liquide sur le système solaire! Listen as we explore each planet and discover all the gases that your parents work with at Air Liquide!";
+          toolCallOutput.response = "Voici notre chanson spéciale sur le système solaire! Listen as we explore each planet and discover all the amazing gases found throughout the universe!";
         } catch (error) {
           console.error("Error playing song:", error);
           toolCallOutput.response = "I couldn't play our special song right now, but let me tell you all about the amazing gases your parents work with at Air Liquide!";

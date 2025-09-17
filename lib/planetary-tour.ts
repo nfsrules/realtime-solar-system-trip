@@ -1,4 +1,4 @@
-// Synchronized planetary tour that matches the Air Liquide song
+// Synchronized planetary tour that matches the educational song
 export const startPlanetaryTour = (setToolCall: (toolCall: any) => void) => {
   const cameraSequence = [
     { action: "focus", planet: "Mercury", time: 4380 },    // 4.38s "Mercu à de l'élien brillant"

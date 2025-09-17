@@ -9,14 +9,9 @@ export async function POST(request: Request) {
 
     // Use default French lyrics if undefined or invalid
     if (!lyrics || lyrics === 'undefined' || lyrics.length < 10) {
-      console.log("Using default French lyrics for Air Liquide kids");
       lyrics = DEFAULT_SOLAR_SYSTEM_LYRICS;
     }
 
-    console.log("Song generation request:", {
-      lyrics: lyrics?.substring(0, 100) + "...",
-      tags: tags
-    });
 
     const apiKey = process.env.SONAUTO_API_KEY;
     if (!apiKey) {
@@ -49,7 +44,6 @@ export async function POST(request: Request) {
     }
 
     const data = await response.json();
-    console.log("Song generated:", data);
 
     return new Response(JSON.stringify(data), {
       status: 200,

@@ -119,7 +119,7 @@ const toolsDefinition = [
   },
   {
     name: "play_solar_system_song",
-    description: "Play the special Air Liquide educational song about the solar system journey and gases. Use this when kids want to have fun learning with music!",
+    description: "Play the special educational song about the solar system journey and gases. Use this when kids want to have fun learning with music!",
     parameters: {},
   },
 ];
