@@ -1,44 +1,53 @@
-# Realtime Solar System Demo
+# Air Liquide Educational Solar System Journey
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![NextJS](https://img.shields.io/badge/Built_with-NextJS-blue)
 ![OpenAI API](https://img.shields.io/badge/Powered_by-OpenAI_API-orange)
+![Sonauto AI](https://img.shields.io/badge/Music_by-Sonauto_AI-purple)
 
-This demo showcases how to use the [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) to interact through voice with a 3D scene (built with [Spline](https://spline.design/)), in this case a scene representing the solar system.
+An interactive educational experience for Air Liquide employees' children to explore the solar system and discover how the gases their parents work with exist throughout the universe! Built with the [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) and featuring an AI-generated song with synchronized planetary tours.
 
-It is implemented using the [Realtime + WebRTC integration](https://platform.openai.com/docs/guides/realtime-webrtc) and uses [Function Calling](https://platform.openai.com/docs/guides/realtime-model-capabilities#function-calling) to trigger actions in the app.
+This demo showcases voice interaction with a 3D scene (built with [Spline](https://spline.design/)), [Function Calling](https://platform.openai.com/docs/guides/realtime-model-capabilities#function-calling), and [Sonauto AI](https://sonauto.ai/) music generation integration.
 
 ![screenshot](./public/screenshot.jpg)
+
+## ✨ Special Features
+
+🎵 **AI-Generated Educational Song**: A custom French song about the solar system and Air Liquide's gases, generated with Sonauto AI
+
+🚀 **Synchronized Planetary Tour**: Camera automatically focuses on planets as they're mentioned in the song
+
+🏭 **Air Liquide Educational Content**: Connects planetary atmospheres to the gases Air Liquide produces
+
+🌍 **Multilingual Support**: French educational content for Air Liquide's international workforce
+
+🎨 **Professional Branding**: Air Liquide logo and company-themed educational experience
 
 ## How to use
 
 ### Running the application
 
-1. **Set up the OpenAI API:**
+1. **Set up the APIs:**
 
-   - If you're new to the OpenAI API, [sign up for an account](https://platform.openai.com/signup).
-   - Follow the [Quickstart](https://platform.openai.com/docs/quickstart) to retrieve your API key.
+   - **OpenAI API**: [Sign up for an account](https://platform.openai.com/signup) and get your API key from the [Quickstart](https://platform.openai.com/docs/quickstart)
+   - **Sonauto API**: [Get your API key](https://sonauto.ai/developers) for AI music generation
 
 2. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/openai/openai-realtime-solar-system.git
+   git clone https://github.com/nfsrules/realtime-solar-system-trip.git
+   cd realtime-solar-system-trip
    ```
 
-3. **Set your API key:**
+3. **Set your API keys:**
 
-   2 options:
-
-   - Set the `OPENAI_API_KEY` environment variable [globally in your system](https://platform.openai.com/docs/quickstart#create-and-export-an-api-key)
-   - Set the `OPENAI_API_KEY` environment variable in the project:
-     Create a `.env` file at the root of the project and add the following line:
-     ```bash
-     OPENAI_API_KEY=<your_api_key>
-     ```
+   Create a `.env` file at the root of the project and add:
+   ```bash
+   OPENAI_API_KEY=<your_openai_api_key>
+   SONAUTO_API_KEY=<your_sonauto_api_key>
+   ```
 
 4. **Install dependencies:**
-
-   Navigate to the project directory and run:
 
    ```bash
    npm install
@@ -52,79 +61,124 @@ It is implemented using the [Realtime + WebRTC integration](https://platform.ope
 
    The app will be available at [http://localhost:3000](http://localhost:3000).
 
-**Note:** the 1st time you load the app, the scene can take a while to load (it's heavy!). The subsequent loads should be faster as it will be cached.
+**Note:** The first time you load the app, the 3D scene may take a while to load. Subsequent loads will be faster due to caching.
 
 ### Starting a session
 
-To start a new Realtime session, wait for a few seconds for the page to load properly, thenclick on the wifi icon in the top right corner of the app.
-Once it turns green, you can start talking to the model.
+1. Wait for the page to load completely
+2. Click the wifi icon in the top right corner to start a Realtime session
+3. Once it turns green, you can start talking to the AI guide
+4. Use the mic icon to toggle your microphone on/off
+5. The wifi icon stops the session and resets the conversation
 
-You can use the mic icon right next to it to toggle the microphone on and off. When you start the session, it will automatically turn on, but you can turn it off to mute yourself while the session is running.
+## 🎓 Educational Experience
 
-Toggling the wifi icon will stop the session, and the conversation will be reset.
+### For Air Liquide Families
 
-## Demo flow
+The AI guide welcomes children as "space explorers" and explains how their parents' work at Air Liquide connects to gases found throughout the solar system:
 
-**Make sure there is no background noise or echo when you talk to the model, as this may cause interruptions.**
+- **Oxygen**: "Your parents work with oxygen that helps people breathe in hospitals!"
+- **Nitrogen**: "Air Liquide makes nitrogen that keeps food fresh - just like on Titan!"
+- **Hydrogen**: "The hydrogen your parents work with powers clean cars - same gas that makes Jupiter huge!"
+- **Helium**: "Air Liquide's helium fills balloons and cools MRI machines - it's also on the Sun!"
+- **CO2**: "The CO2 Air Liquide captures helps make sodas fizzy - Mars and Venus are full of it!"
 
-The demo is configured with instructions prompting the model to answer any question about the solar system. Additionally, the model has access to multiple tools that map to actions in the app or animations in the spline scene.
+### Interactive Features
 
-### Configured interactions
+🪐 **Planet Focus**: Ask about any planet to automatically zoom in and learn about its atmospheric composition
 
-More specifically, the following interactions trigger animations:
+🎵 **Musical Journey**: Say "play the song" to start the synchronized planetary tour with educational music
 
-🪐 Asking about a **specific planet** will trigger a visual focus on that planet if the animation was set up in the spline scene (works with the Sun, Earth, Mercury, Mars, Jupiter, Saturn, Neptune, Pluto). These animations can also be triggered by clicking on the planets in the UI.
+📊 **Data Visualization**: Ask questions with numbers to see interactive charts (bar charts, pie charts)
 
-🌕 Asking about **moons** will trigger the moons to appear if they have been set up in the spline scene (works with Pluto's moons and Jupiter's galilean moons).
+🌕 **Moon Exploration**: Ask about moons to see them appear in the scene
 
-📊 Asking about **data** that can be represented with a chart will result in a chart being displayed in the UI (bar chart or pie chart).
+🛰️ **ISS Tracking**: Ask about the International Space Station to see its real-time position
 
-🛰️ Asking about the position of the **ISS** will result in the ISS position being fetched and the ISS being displayed in the spline scene with the corresponding animation.
+👋 **Natural Conversation**: The AI understands when you're done and naturally resets the view
 
-👋 Saying something like "thank you, I'm good" or anything to **close the conversation** will reset the camera to the initial position. This animation can also be triggered by hitting the space bar.
+### Example Educational Flow
 
-🌌 Asking about the planets' **orbits** will result in a camera change to see the solar system from above. This animation can also be triggered by hitting the M key to change to orbit view, and pressing the Enter key to change back to main view.
+1. "Hello! Can you tell me about space?"
+2. "I want to learn about Mars" → *Camera focuses on Mars, explains CO2 atmosphere*
+3. "What about Jupiter?" → *Camera focuses on Jupiter, explains hydrogen/helium composition*
+4. "Can you play the special song?" → *Starts synchronized musical tour of all planets*
+5. "Show me Jupiter's moons" → *Galilean moons appear*
+6. "Thank you!" → *Returns to full solar system view*
 
-For more details about tools used by the model, see the `lib/config.ts` file.
+## 🎵 Song Features
 
-### Example flow
+- **AI-Generated Music**: Custom song created with Sonauto AI about planetary gases
+- **French Lyrics**: Educational content in French for international Air Liquide families
+- **Synchronized Tour**: Camera automatically follows the song, focusing on planets as mentioned
+- **Smooth Fade-Out**: Professional audio experience with gentle fade ending
+- **Educational Content**: Each verse teaches about different gases and Air Liquide's role
 
-Here is an example flow that showcases the different interactions:
+## 🛠️ Technical Implementation
 
-1. Say something like "I'm curious about Earth" to focus on Earth
-2. Ask for the distribution of land vs water - a pie chart should appear, if not prompt the model to show it to you
-3. Say something like "I have a question about Mars now" to focus on Mars
-4. Ask for the highest volcano and how it compares to Mount Everest - a bar chart should appear, if not prompt the model to show it to you
-5. Say something like "thank you, I'm good" to reset the camera
-6. Ask where the ISS is - the model should reply with the position and the ISS should appear in the scene
-7. Say that you'd like to see Pluto now to focus on Pluto
-8. Ask about its moons - 5 moons will pop up
-9. (optional): Do the same with Jupiter and ask about Galilean moons - 4 moons will pop up
-10. Ask something related to the position of the planets in the solar system, for example "how are the planets positioned in their orbits" - The view will change to a high level view with orbits
+### Supported Planets in 3D Scene
+The Spline 3D scene supports: **Sun, Mercury, Earth, Mars, Jupiter, Saturn, Neptune, Pluto**
 
-## Customization
+*Note: Venus and Uranus are not available in the current 3D scene and are automatically skipped in tours*
 
-This demo is just an example of how to use Function Calling with the Realtime API to trigger actions in an application, including sending events to a spline scene.
+### API Integrations
 
-You can read more about how to build your own scene in the [Spline documentation](https://docs.spline.design/doc). You can then change the scene url in the `components/scene.tsx` file.
+- **OpenAI Realtime API**: Voice interaction and function calling
+- **Sonauto AI**: Music generation for educational content
+- **ISS API**: Real-time International Space Station position
 
-```html
+### Key Files
+
+- `lib/config.ts` - AI instructions and tool definitions
+- `lib/planetary-tour.ts` - Synchronized camera movements
+- `components/scene.tsx` - 3D scene interaction logic
+- `app/api/song/route.ts` - Sonauto AI integration
+- `lib/default-lyrics.ts` - Fallback French educational lyrics
+
+## 🎨 Customization
+
+### Updating the 3D Scene
+
+Change the scene URL in `components/scene.tsx`:
+```typescript
 <Spline
-  scene="https://prod.spline.design/<scene_id>/scene.splinecode"
-  onLoad="{onLoad}"
+  scene="https://prod.spline.design/<your_scene_id>/scene.splinecode"
+  onLoad={onLoad}
 />
 ```
 
-If you want to use your own scene, make sure to configure trigger events in the spline scene, and update the code to trigger the events in the `components/scene.tsx` file.
+### Customizing Educational Content
 
-For example, you can add to any object in your scene a `mouseDown` event that will trigger an animation. You can then trigger this event in the `components/scene.tsx` file by calling `spline.current.emitEvent("mouseDown", "object_name")`.
+- **Instructions**: Update `lib/config.ts` to change AI behavior
+- **Company Branding**: Replace `public/logo-air-liquide.png` with your logo
+- **Song Content**: Modify `lib/default-lyrics.ts` for different educational themes
+- **Planetary Data**: Update atmospheric composition data in `lib/config.ts`
 
-You can also update:
+### Adding New Tools
 
-- The instructions in the `lib/config.ts` file to change the behavior of the model
-- The tools the model has access to in the `lib/config.ts` file
-- The [voice](https://platform.openai.com/docs/api-reference/realtime-sessions/create#realtime-sessions-create-voice) in the `lib/constants.ts` file
+Add new function definitions to `lib/config.ts` and handle them in `components/scene.tsx`:
 
-## License
+```typescript
+{
+  name: "your_new_tool",
+  description: "Description of what this tool does",
+  parameters: {
+    // Tool parameters
+  }
+}
+```
+
+## 🚀 Deployment
+
+The app is ready for deployment on platforms like Vercel, Netlify, or any Node.js hosting service. Make sure to set your environment variables:
+
+- `OPENAI_API_KEY`
+- `SONAUTO_API_KEY`
+
+## 📄 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+*Built with ❤️ for Air Liquide families to explore the wonders of space and science together!*
