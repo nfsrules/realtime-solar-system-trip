@@ -9,7 +9,7 @@ An interactive educational experience for children to explore the solar system a
 
 This demo showcases voice interaction with a 3D scene (built with [Spline](https://spline.design/)), [Function Calling](https://platform.openai.com/docs/guides/realtime-model-capabilities#function-calling), and [Sonauto AI](https://sonauto.ai/) music generation integration.
 
-![Air Liquide Solar System Demo](https://github.com/nfsrules/realtime-solar-system-trip/blob/main/public/demo-photo.png?raw=true)
+![Solar System Demo](https://github.com/nfsrules/realtime-solar-system-trip/blob/main/public/screenshot.jpg?raw=true)
 
 ## ✨ Special Features
 
