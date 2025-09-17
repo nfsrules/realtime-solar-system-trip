@@ -9,7 +9,7 @@ An interactive educational experience for Air Liquide employees' children to exp
 
 This demo showcases voice interaction with a 3D scene (built with [Spline](https://spline.design/)), [Function Calling](https://platform.openai.com/docs/guides/realtime-model-capabilities#function-calling), and [Sonauto AI](https://sonauto.ai/) music generation integration.
 
-![screenshot](./public/screenshot.jpg)
+![Air Liquide Solar System Demo](https://github.com/nfsrules/realtime-solar-system-trip/blob/main/public/demo-photo.png?raw=true)
 
 ## ✨ Special Features
 
