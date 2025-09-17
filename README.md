@@ -21,8 +21,6 @@ This demo showcases voice interaction with a 3D scene (built with [Spline](https
 
 🌍 **Multilingual Support**: French educational content for Air Liquide's international workforce
 
-🎨 **Professional Branding**: Air Liquide logo and company-themed educational experience
-
 ## How to use
 
 ### Running the application
