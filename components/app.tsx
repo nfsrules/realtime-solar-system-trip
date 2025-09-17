@@ -3,9 +3,11 @@
 import Controls from "@/components/controls";
 import Scene from "@/components/scene";
 import Logs from "@/components/logs";
+import Image from "next/image";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { INSTRUCTIONS, TOOLS } from "@/lib/config";
 import { BASE_URL, MODEL } from "@/lib/constants";
+import { startPlanetaryTour } from "@/lib/planetary-tour";
 
 type ToolCallOutput = {
   response: string;
@@ -18,6 +20,7 @@ export default function App() {
   const [isSessionStarted, setIsSessionStarted] = useState(false);
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [songUrl, setSongUrl] = useState<string | null>(null);
 
   const [dataChannel, setDataChannel] = useState<RTCDataChannel | null>(null);
   const peerConnection = useRef<RTCPeerConnection | null>(null);
@@ -151,14 +154,14 @@ export default function App() {
   function stopRecording() {
     setIsListening(false);
 
-    // Stop existing mic tracks so the user’s mic is off
+    // Stop existing mic tracks so the user's mic is off
     if (audioStream) {
       audioStream.getTracks().forEach((track) => track.stop());
     }
     setAudioStream(null);
 
-    // Replace with a placeholder (silent) track
-    if (tracks.current) {
+    // Replace with a placeholder (silent) track only if peer connection is still active
+    if (tracks.current && peerConnection.current && peerConnection.current.connectionState !== 'closed') {
       const placeholderTrack = createEmptyAudioTrack();
       tracks.current.forEach((sender) => {
         sender.replaceTrack(placeholderTrack);
@@ -214,6 +217,42 @@ export default function App() {
         toolCallOutput.issPosition = issPosition;
       }
 
+      if (toolCall.name === "play_solar_system_song") {
+        try {
+          const songUrl = "/solar-system-song.ogg";
+          setSongUrl(songUrl);
+
+          // Create and play the local audio file
+          const audio = new Audio(songUrl);
+
+          // Clear song notification when audio ends (keep camera on Earth)
+          audio.onended = () => {
+            setSongUrl(null);
+          };
+
+          audio.play();
+
+          // Fade out audio in the last 3 seconds
+          setTimeout(() => {
+            const fadeOut = setInterval(() => {
+              if (audio.volume > 0.1) {
+                audio.volume -= 0.1;
+              } else {
+                clearInterval(fadeOut);
+              }
+            }, 200);
+          }, 92000); // Start fade at 92s (3 seconds before 95s end)
+
+          // Start synchronized planetary tour
+          startPlanetaryTour(setToolCall);
+
+          toolCallOutput.response = "Voici notre chanson spéciale Air Liquide sur le système solaire! Listen as we explore each planet and discover all the gases that your parents work with at Air Liquide!";
+        } catch (error) {
+          console.error("Error playing song:", error);
+          toolCallOutput.response = "I couldn't play our special song right now, but let me tell you all about the amazing gases your parents work with at Air Liquide!";
+        }
+      }
+
       sendClientEvent({
         type: "conversation.item.create",
         item: {
@@ -226,7 +265,8 @@ export default function App() {
       // Force a model response to make sure it responds after certain tool calls
       if (
         toolCall.name === "get_iss_position" ||
-        toolCall.name === "display_data"
+        toolCall.name === "display_data" ||
+        toolCall.name === "play_solar_system_song"
       ) {
         sendClientEvent({
           type: "response.create",
@@ -286,9 +326,23 @@ export default function App() {
     }
   };
 
+
   return (
     <div className="relative size-full">
       <Scene toolCall={toolCall} />
+
+      {/* Air Liquide Logo */}
+      <div className="absolute top-4 left-4 z-10">
+        <Image
+          src="/logo-air-liquide.png"
+          alt="Air Liquide"
+          width={200}
+          height={48}
+          className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity"
+          priority
+        />
+      </div>
+
       <Controls
         handleConnectClick={handleConnectClick}
         handleMicToggleClick={handleMicToggleClick}
@@ -296,6 +350,21 @@ export default function App() {
         isListening={isListening}
       />
       <Logs messages={logs} />
+
+      {/* Song Player Notification */}
+      {songUrl && (
+        <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg shadow-lg max-w-sm animate-pulse">
+          <div className="flex items-center gap-2">
+            <svg className="w-6 h-6 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+            </svg>
+            <div>
+              <p className="font-bold">🎵 Solar System Song Playing!</p>
+              <p className="text-sm">Learning about gases in space!</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -43,11 +43,15 @@ const Scene: React.FC<SceneProps> = ({ toolCall }) => {
     // Parse arguments
     const { name, arguments: toolArgs } = toolCall;
     let args: any = {};
-    try {
-      args = JSON.parse(toolArgs);
-    } catch (error) {
-      console.error("Failed to parse toolCall arguments:", error);
-      return;
+
+    if (toolArgs) {
+      try {
+        // Check if toolArgs is already an object or needs parsing
+        args = typeof toolArgs === 'string' ? JSON.parse(toolArgs) : toolArgs;
+      } catch (error) {
+        console.error("Failed to parse toolCall arguments:", error, toolArgs);
+        return;
+      }
     }
 
     // Trigger animation in spline for a given object
