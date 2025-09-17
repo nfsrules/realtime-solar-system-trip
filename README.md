@@ -1,11 +1,11 @@
-# Air Liquide Educational Solar System Journey
+# Educational Solar System Journey
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![NextJS](https://img.shields.io/badge/Built_with-NextJS-blue)
 ![OpenAI API](https://img.shields.io/badge/Powered_by-OpenAI_API-orange)
 ![Sonauto AI](https://img.shields.io/badge/Music_by-Sonauto_AI-purple)
 
-An interactive educational experience for Air Liquide employees' children to explore the solar system and discover how the gases their parents work with exist throughout the universe! Built with the [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) and featuring an AI-generated song with synchronized planetary tours.
+An interactive educational experience for children to explore the solar system and discover how gases exist throughout the universe! Built with the [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) and featuring an AI-generated song with synchronized planetary tours.
 
 This demo showcases voice interaction with a 3D scene (built with [Spline](https://spline.design/)), [Function Calling](https://platform.openai.com/docs/guides/realtime-model-capabilities#function-calling), and [Sonauto AI](https://sonauto.ai/) music generation integration.
 
@@ -13,11 +13,11 @@ This demo showcases voice interaction with a 3D scene (built with [Spline](https
 
 ## ✨ Special Features
 
-🎵 **AI-Generated Educational Song**: A custom French song about the solar system and Air Liquide's gases, generated with Sonauto AI
+🎵 **AI-Generated Educational Song**: A custom French song about the solar system gases, generated with Sonauto AI
 
 🚀 **Synchronized Planetary Tour**: Camera automatically focuses on planets as they're mentioned in the song
 
-🏭 **Air Liquide Educational Content**: Connects planetary atmospheres to the gases Air Liquide produces
+🏭 **Educational Content**: Connects planetary atmospheres to the gases Air Liquide produces
 
 🌍 **Multilingual Support**: French educational content for Air Liquide's international workforce
 
@@ -73,13 +73,13 @@ This demo showcases voice interaction with a 3D scene (built with [Spline](https
 
 ### For Air Liquide Families
 
-The AI guide welcomes children as "space explorers" and explains how their parents' work at Air Liquide connects to gases found throughout the solar system:
+The AI guide welcomes children as "space explorers" and gases found throughout the solar system:
 
 - **Oxygen**: "Your parents work with oxygen that helps people breathe in hospitals!"
-- **Nitrogen**: "Air Liquide makes nitrogen that keeps food fresh - just like on Titan!"
-- **Hydrogen**: "The hydrogen your parents work with powers clean cars - same gas that makes Jupiter huge!"
-- **Helium**: "Air Liquide's helium fills balloons and cools MRI machines - it's also on the Sun!"
-- **CO2**: "The CO2 Air Liquide captures helps make sodas fizzy - Mars and Venus are full of it!"
+- **Nitrogen**: "Nitrogen that keeps food fresh - just like on Titan!"
+- **Hydrogen**: "Hydrogen powers clean cars - same gas that makes Jupiter huge!"
+- **Helium**: "Helium fills balloons and cools MRI machines - it's also on the Sun!"
+- **CO2**: "CO2 Air Liquide captures helps make sodas fizzy - Mars and Venus are full of it!"
 
 ### Interactive Features
 
@@ -107,10 +107,10 @@ The AI guide welcomes children as "space explorers" and explains how their paren
 ## 🎵 Song Features
 
 - **AI-Generated Music**: Custom song created with Sonauto AI about planetary gases
-- **French Lyrics**: Educational content in French for international Air Liquide families
+- **French Lyrics**: Educational content in French for international families
 - **Synchronized Tour**: Camera automatically follows the song, focusing on planets as mentioned
 - **Smooth Fade-Out**: Professional audio experience with gentle fade ending
-- **Educational Content**: Each verse teaches about different gases and Air Liquide's role
+- **Educational Content**: Each verse teaches about different gases
 
 ## 🛠️ Technical Implementation
 
@@ -179,4 +179,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-*Built with ❤️ for Air Liquide families to explore the wonders of space and science together!*
+*Built with ❤️ for families to explore the wonders of space and science together!*
